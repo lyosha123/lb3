@@ -2,63 +2,63 @@
 
 using namespace std;
  
-//Очередь
+//Cписок
 
-struct Node
+struct List
 {
 	int numb;
-	Node* p;
+	List* next;
 };
-void first(Node**);
-void add(Node**);
-int del(Node**);
+void one(List**);
+void add(List**);
+int del(List**);
 void main()
 {
 	setlocale(LC_CTYPE,"");
 	int n;
 	cout << "Введите количество элементов: ";
 	cin >> n;
-	Node* pbeg,*pend;
-	first(&pbeg);
-	pend  = pbeg; 
+	List* first,*end;
+	one(&first);
+	end  = first; 
 	for(int i = 1;i < n;i++)
 	{
-		add(&pend);
+		add(&end);
 	}
 	for(int i = 0;i < n;i++)
 	{
-		cout << del(&pbeg)<<" ";
+		cout << del(&first)<<" ";
 	}
 	system ("pause");
 }
 // Начальное формирование очереди 
-void first(Node** pbeg)
+void one(List** first)
 {
-	Node* pv = new Node;
+	List* pv = new List;
 	cout <<"Введите чисто: ";
 	cin >> pv->numb ;
-	pv->p = NULL;
-	*pbeg = pv;
+	pv->next = NULL;
+	*first = pv;
 }
 
 // Добавление в конец
 
-void add(Node** pend )
+void add(List** end )
 {
-	Node* pv = new Node;
+	List* pv = new List;
 	cout <<"Введите чисто: ";
 	cin >> pv->numb;
-	pv->p = 0;
-	(*pend)->p = pv;
-	*pend = pv;
+	pv->next = 0;
+	(*end)->next = pv;
+	*end = pv;
 }
 
 // Выборка и удаление 
-int del(Node** pbeg)
+int del(List** first)
 {
-	int numb = (*pbeg)->numb;
-	Node* pv = *pbeg;
-	*pbeg = (*pbeg)->p;
+	int numb = (*first)->numb;
+	List* pv = *first;
+	*first = (*first)->next;
 	delete pv;
 	return numb;
 }

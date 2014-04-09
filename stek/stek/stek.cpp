@@ -1,21 +1,25 @@
 #include <iostream>
 
 using namespace std;
-struct List
+//Cтек
+
+struct Node
 {
 	int numb;
-	List* p;
+	Node* p;
 };
-void first(List**);
-void push(List**);
-int pop(List**);
+void first(Node**);
+void push(Node**);
+int pop(Node**);
 void main()
 {
 	setlocale(LC_CTYPE,"");
 	int n;
 	cout << "Введите количество элементов: ";
 	cin >> n;
-	List* top;
+	
+	Node* top;
+	
 	first(&top);
 	for(int i = 1;i < n;i++)
 	{
@@ -27,25 +31,28 @@ void main()
 	}
 	system ("pause");
 }
-void first(List** top)
+//Начальное формирование стека
+void first(Node** top)
 {
-	List* pv = new List;
+	Node* pv = new Node;
 	cout <<"Введите чисто: ";
 	cin >> pv->numb ;
 	*top = pv;
 }
-void push(List** top )
+// Занесение в стек
+void push(Node** top )
 {
-	List* pv = new List;
+	Node* pv = new Node;
 	cout <<"Введите чисто: ";
 	cin >> pv->numb ;
 	pv->p = *top;
 	*top = pv;
 }
-int pop(List** top)
+// Выборка и удаление из стека
+int pop(Node** top)
 {
 	int numb = (*top)->numb;
-	List* pv = *top;
+	Node* pv = *top;
 	*top = (*top)->p;
 	delete pv;
 	return numb;
